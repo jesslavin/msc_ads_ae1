@@ -16,24 +16,25 @@ public class AssEx1 {
      * return array
      */
     public static String[] readFromFile(String fileName) {
-        FileReader myFileReader = null;
+        FileReader myFileReader;
         try {
             myFileReader = new FileReader(fileName);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            return null;
         }
         BufferedReader myBufferedReader = new BufferedReader(myFileReader);
         List<String> aList = new ArrayList<>();
         String c = null;
         while (true) {
             try {
-                if (!((c = myBufferedReader.readLine()) != null)) break;
+                if ((c = myBufferedReader.readLine()) == null) break;
             } catch (IOException e) {
                 e.printStackTrace();
             }
             aList.add(c);
         }
-        return aList.toArray(new String[aList.size()]);
+        return aList.toArray(new String[0]);
     }
 
     /**
@@ -42,11 +43,7 @@ public class AssEx1 {
      * your set should be instantiated as a TreeSet (see lecture 1)
      */
     public static Set<String> arrayToSet(String[] myArray){
-        Set<String> strSet = new TreeSet<String>();
-        for (String a : myArray) {
-            strSet.add(a);
-        }
-        return strSet;
+        return new TreeSet<>(Arrays.asList(myArray));
     }
 
     /** randomly re-order an array
@@ -57,9 +54,9 @@ public class AssEx1 {
         Random randNo = new Random();
         for (int i=0; i<origArray.length; i++) {
             int jumblePos = randNo.nextInt(origArray.length);
-            String temp = origArray[i];
+            String s = origArray[i];
             origArray[i] = origArray[jumblePos];
-            origArray[jumblePos] = temp;
+            origArray[jumblePos] = s;
         }
     }
 
@@ -69,32 +66,34 @@ public class AssEx1 {
      * are stored
      */
     public static String arrayToString(String[] stringArray){
-        String arrayStr = ("");
-        for (int i=0; i<stringArray.length; i++) {
-        arrayStr += stringArray [i] + "\n";
+        StringBuilder arrayStr = new StringBuilder();
+        for (String s : stringArray) {
+            arrayStr.append(s).append("\n");
         }
-        return arrayStr;
+        return arrayStr.toString();
     }
 
     /** create a string consisting of all of the elements in a set,
      * one element per row.
      * Use a for--each loop to return them in the order in which they
      * are stored
+     * @return
      */
     public static String setToString(Set<String> stringSet) {
-        Iterator<String> myIterator = stringSet.iterator();
-        String setStr = ("");
-        while(myIterator.hasNext()){
-            setStr += myIterator.next() + "\n";
+        StringBuilder setStr = new StringBuilder();
+        for (String s : stringSet) {
+            setStr.append(s).append("\n");
         }
-        return setStr;
+        return setStr.toString();
     }
+
+
 
     /**
      * main method - do not edit this
      * @param args
      */
-    public static void main(String[] args) {
+    public static void main(String[] args){
         String fileName = args[0];
         String[] originalArray = readFromFile(fileName);
         System.out.println("the array has length " + originalArray.length + "\n");
@@ -116,6 +115,8 @@ public class AssEx1 {
         System.out.print(arrayToString(newArray2) + "\n");
         System.out.print("The corresponding set is:\n");
         System.out.print(setToString(arrayToSet(newArray2)) + "\n");
+
+
 
     }
 
