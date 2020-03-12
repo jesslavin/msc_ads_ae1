@@ -2,6 +2,7 @@
 // 2495543L
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
@@ -14,15 +15,24 @@ public class AssEx1 {
      * @param filename
      * return array
      */
-    public static String[] readFromFile(String fileName) throws IOException {
-        FileReader myFileReader = new FileReader(fileName);
+    public static String[] readFromFile(String fileName) {
+        FileReader myFileReader = null;
+        try {
+            myFileReader = new FileReader(fileName);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         BufferedReader myBufferedReader = new BufferedReader(myFileReader);
         List<String> aList = new ArrayList<>();
-        String c;
-        while ((c = myBufferedReader.readLine()) != null) {
+        String c = null;
+        while (true) {
+            try {
+                if (!((c = myBufferedReader.readLine()) != null)) break;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             aList.add(c);
         }
-        myBufferedReader.close();
         return aList.toArray(new String[aList.size()]);
     }
 
@@ -84,7 +94,7 @@ public class AssEx1 {
      * main method - do not edit this
      * @param args
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         String fileName = args[0];
         String[] originalArray = readFromFile(fileName);
         System.out.println("the array has length " + originalArray.length + "\n");
