@@ -67,7 +67,7 @@ public class AssessmentSLL<E extends Comparable<E>> {
 		Node<E> n = new Node<E>(elem, null);
 		// 2. If the SLL is empty:
 		if (first == null) {
-			// 2.1. Set n has SLL head
+			// 2.1. Set n as SLL head
 			first = n;
 			// 2.2. Return
 			return;
@@ -81,6 +81,7 @@ public class AssessmentSLL<E extends Comparable<E>> {
 		// 3.2. Change the next of the last node in the SLL to n
 		curr.next = n;
 		// 3.3. Return
+		return;
 	}
 
 	/** delete every alternate element
@@ -110,6 +111,7 @@ public class AssessmentSLL<E extends Comparable<E>> {
 				curr = prev.next;
 			}
 		}
+		return;
 	}
 
 	/**
@@ -118,14 +120,9 @@ public class AssessmentSLL<E extends Comparable<E>> {
 	 * you need to replace the type list1, list2 and list3 and the return type
 	 * with the new name of this class
 	 */
-	public  AssessmentSLL<E> merge(AssessmentSLL<E> list1, AssessmentSLL<E> list2){
+	public  AssessmentSLL<E> merge(AssessmentSLL<E> list1, AssessmentSLL<E> list2) {
 		AssessmentSLL<E> mergedList = new AssessmentSLL<E>();
-		
-		// you to fill in the rest
-		
 		return mergedList;
-
 	}
-
 }
 

@@ -50,5 +50,36 @@ public class AssExTest {
         System.out.println("---------------------------------------");
         animals.printFirstToLast();
 
+        System.out.println(" ");
+        System.out.println("///// NUMBERS TO TEST MERGE METHOD /////");
+
+        AssessmentSLL<String> numbers1 = new AssessmentSLL<String>();
+
+        numbers1.insertTail("1");
+        numbers1.insertTail("2");
+        numbers1.insertTail("3");
+
+        System.out.println(" ");
+        System.out.println("Create first list of numbers:");
+        System.out.println("-----------------------------");
+        numbers1.printFirstToLast();
+
+        AssessmentSLL<String> numbers2 = new AssessmentSLL<String>();
+
+        numbers2.insertTail("3");
+        numbers2.insertTail("4");
+        numbers2.insertTail("5");
+
+        System.out.println(" ");
+        System.out.println("Create second list of numbers:");
+        System.out.println("------------------------------");
+        numbers2.printFirstToLast();
+
+        AssessmentSLL<String>mergeList = new AssessmentSLL<String>().merge(numbers1, numbers2);
+        System.out.println(" ");
+        System.out.println("Prints merged list:");
+        System.out.println("-----------------------------");
+        mergeList.printFirstToLast();
+
     }
 }
