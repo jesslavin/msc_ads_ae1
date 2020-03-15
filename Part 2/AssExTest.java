@@ -67,8 +67,8 @@ public class AssExTest {
         AssessmentSLL<String> numbers2 = new AssessmentSLL<String>();
 
         numbers2.insertTail("3");
-        numbers2.insertTail("4");
-        numbers2.insertTail("5");
+        numbers2.insertTail("2");
+        numbers2.insertTail("1");
 
         System.out.println(" ");
         System.out.println("Create second list of numbers:");

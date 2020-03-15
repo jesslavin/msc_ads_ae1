@@ -95,7 +95,7 @@ public class AssessmentSLL<E extends Comparable<E>> {
 		if (first == null) {
 			return;
 		}
-		// 2. Else, initialise previous node and current node
+		// 2. Else, initialise previous node and current node to the first and second nodes in the list
 		Node prev = first;
 		Node curr = first.next;
 		// 3. While neither the previous node or current node are empty, repeat:
@@ -105,12 +105,13 @@ public class AssessmentSLL<E extends Comparable<E>> {
 			prev.next = curr.next;
 			// 3.2. Empty the contents of current node
 			curr = null;
-			// 3.3. Traverse updating the previous and current nodes to the next set of nodes
+			// 3.3. Traverse updating the previous and current nodes to the next set of nodes in the list
 			prev = prev.next;
 			if (prev != null) {
 				curr = prev.next;
 			}
 		}
+		// 4. Return
 		return;
 	}
 
@@ -120,8 +121,33 @@ public class AssessmentSLL<E extends Comparable<E>> {
 	 * you need to replace the type list1, list2 and list3 and the return type
 	 * with the new name of this class
 	 */
-	public  AssessmentSLL<E> merge(AssessmentSLL<E> list1, AssessmentSLL<E> list2) {
+	public AssessmentSLL<E> merge(AssessmentSLL<E> list1, AssessmentSLL<E> list2) {
+
 		AssessmentSLL<E> mergedList = new AssessmentSLL<E>();
+
+		while (list1.first != null && list2.first != null) {
+
+			if (list1.first.element.compareTo(list2.first.element) < 0) {
+				mergedList.insertTail(list1.first.element);
+				list1.first = list1.first.next;
+			} else {
+				mergedList.insertTail(list2.first.element);
+				if (list1.first.element.compareTo(list2.first.element) != 0) {
+					list2.first = list2.first.next;
+				} else {
+					list1.first = list1.first.next;
+					list2.first = list2.first.next;
+				}
+			}
+		}
+		while (list1.first != null) {
+			mergedList.insertTail(list1.first.element);
+			list1.first = list1.first.next;
+		}
+		while (list2.first != null) {
+			mergedList.insertTail(list2.first.element);
+			list2.first = list2.first.next;
+		}
 		return mergedList;
 	}
 }
