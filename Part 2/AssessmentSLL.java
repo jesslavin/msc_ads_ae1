@@ -52,7 +52,7 @@ public class AssessmentSLL<E extends Comparable<E>> {
 
 	/**
 	 * insert new node containing elem at front of list
-	 * 
+	 *
 	 */
 	public void insert(E elem) {
 		Node<E> newNode = new Node<E>(elem, first);
@@ -123,8 +123,37 @@ public class AssessmentSLL<E extends Comparable<E>> {
 	 */
 	public  AssessmentSLL<E> merge(AssessmentSLL<E> list1, AssessmentSLL<E> list2) {
 		AssessmentSLL<E> mergedList = new AssessmentSLL<>();
+		mergedList = list1.mergeTwo(list2);
+		mergedList = mergedList.mergeTwo(this);
+		return mergedList;
+	}
 
+	public AssessmentSLL<E> mergeTwo(AssessmentSLL<E> list) {
+		AssessmentSLL<E> mergedList = new AssessmentSLL<E>();
 
+		while (list.first != null && this.first != null) {
+			if (list.first.element.compareTo(this.first.element) < 0) {
+				mergedList.insertTail(list.first.element);
+				list.first = list.first.next;
+			} else {
+				mergedList.insertTail(this.first.element);
+				if (list.first.element.compareTo(this.first.element) != 0) {
+					this.first = this.first.next;
+				} else {
+					list.first = list.first.next;
+					this.first = this.first.next;
+				}
+			}
+		}
+		while (list.first != null) {
+			mergedList.insertTail(list.first.element);
+			list.first = list.first.next;
+		}
+		while (this.first != null) {
+			mergedList.insertTail(this.first.element);
+			this.first = this.first.next;
+		}
+		return mergedList;
 	}
 }
 
