@@ -68,13 +68,13 @@ public class AssessmentSLL<E extends Comparable<E>> {
 		Node<E> n = new Node<>(elem, null);
 		if (first == null) {
 			first = n;
-			return;
+		} else {
+			Node<E> curr = first;
+			while (curr.next != null) {
+				curr = curr.next;
+			}
+			curr.next = n;
 		}
-		Node<E> curr = first;
-		while (curr.next !=null) {
-			curr = curr.next;
-		}
-		curr.next = n;
 		return;
 	}
 
