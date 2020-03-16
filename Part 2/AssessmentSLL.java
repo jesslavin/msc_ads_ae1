@@ -1,3 +1,6 @@
+// Jessica Lavin
+// 2495543L
+
 //add your name and matric number here
 //do not include package statement 
 //do not import any classes
@@ -64,7 +67,7 @@ public class AssessmentSLL<E extends Comparable<E>> {
 	 */
 	public void insertTail(E elem) {
 		// 1. create new node n, set next to null
-		Node<E> n = new Node<E>(elem, null);
+		Node<E> n = new Node<>(elem, null);
 		// 2. If the SLL is empty:
 		if (first == null) {
 			// 2.1. Set n as SLL head
@@ -96,8 +99,8 @@ public class AssessmentSLL<E extends Comparable<E>> {
 			return;
 		}
 		// 2. Else, initialise previous node and current node to the first and second nodes in the list
-		Node prev = first;
-		Node curr = first.next;
+		Node<E> prev = first;
+		Node<E> curr = first.next;
 		// 3. While neither the previous node or current node are empty, repeat:
 		while (prev != null && curr != null)
 		{
@@ -121,39 +124,54 @@ public class AssessmentSLL<E extends Comparable<E>> {
 	 * you need to replace the type list1, list2 and list3 and the return type
 	 * with the new name of this class
 	 */
-	public  AssessmentSLL<E> merge(AssessmentSLL<E> list1, AssessmentSLL<E> list2) {
-		AssessmentSLL<E> mergedList = new AssessmentSLL<>();
-		mergedList = list1.mergeTwo(list2);
-		mergedList = mergedList.mergeTwo(this);
+	public AssessmentSLL<E> merge(AssessmentSLL<E> list1, AssessmentSLL<E> list2) {
+		AssessmentSLL<E> mergedList = new AssessmentSLL<E>();
+		mergedList = this.merge2(list1);
+		mergedList = mergedList.merge2(list2);
 		return mergedList;
 	}
 
-	public AssessmentSLL<E> mergeTwo(AssessmentSLL<E> list) {
-		AssessmentSLL<E> mergedList = new AssessmentSLL<E>();
 
-		while (list.first != null && this.first != null) {
-			if (list.first.element.compareTo(this.first.element) < 0) {
-				mergedList.insertTail(list.first.element);
-				list.first = list.first.next;
+	public AssessmentSLL<E> merge2(AssessmentSLL<E> toAdd) {
+		AssessmentSLL<E> doubleList = new AssessmentSLL<E>();
+		Node<E> node1 = this.first;
+		Node<E> node2 = toAdd.first;
+
+		while (node1 != null && node2 != null) {
+			if (node1.element.compareTo(node2.element) < 0) {
+				doubleList.insertTail(node1.element);
+				node1 = node1.next;
 			} else {
-				mergedList.insertTail(this.first.element);
-				if (list.first.element.compareTo(this.first.element) != 0) {
-					this.first = this.first.next;
-				} else {
-					list.first = list.first.next;
-					this.first = this.first.next;
+				doubleList.insertTail(node2.element);
+				if (node1.element.compareTo(node2.element) == 0) {
+					node1 = node1.next;
 				}
+				node2 = node2.next;
 			}
 		}
-		while (list.first != null) {
-			mergedList.insertTail(list.first.element);
-			list.first = list.first.next;
+		while (node1 != null) {
+			doubleList.insertTail(node1.element);
+			node1 = node1.next;
 		}
-		while (this.first != null) {
-			mergedList.insertTail(this.first.element);
-			this.first = this.first.next;
+		while (node2 != null) {
+			doubleList.insertTail(node2.element);
+			node2 = node2.next;
 		}
-		return mergedList;
+		doubleList = doubleList.removeDups();
+		return doubleList;
+	}
+
+	public AssessmentSLL<E> removeDups(){
+		Node<E> curr = this.first;
+		while (curr != null) {
+			Node<E> counter = curr;
+			while(counter != null && counter.element == curr.element){
+				counter = counter.next;
+			}
+			curr.next = counter;
+			curr = curr.next;
+		}
+		return this;
 	}
 }
 

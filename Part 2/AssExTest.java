@@ -55,9 +55,9 @@ public class AssExTest {
 
         AssessmentSLL list1 = new AssessmentSLL();
 
-        list1.insertTail("1");
-        list1.insertTail("3");
-        list1.insertTail("5");
+        list1.insertTail("7");
+        list1.insertTail("8");
+        list1.insertTail("9");
 
         System.out.println(" ");
         System.out.println("Create first list of numbers:");
@@ -66,9 +66,9 @@ public class AssExTest {
 
         AssessmentSLL list2 = new AssessmentSLL();
 
-        list2.insertTail("1");
-        list2.insertTail("2");
-        list2.insertTail("3");
+        list2.insertTail("6");
+        list2.insertTail("7");
+        list2.insertTail("8");
 
         System.out.println(" ");
         System.out.println("Create second list of numbers:");
@@ -79,9 +79,14 @@ public class AssExTest {
         list3.insertTail("4");
         list3.insertTail("5");
         list3.insertTail("6");
-        list3.printFirstToLast();
+
         System.out.println(" ");
-        System.out.println("Prints merged list:");
+        System.out.println("Create third list of numbers:");
+        System.out.println("------------------------------");
+        list3.printFirstToLast();
+
+        System.out.println(" ");
+        System.out.println("Prints merged lists:");
         System.out.println("-----------------------------");
         list3 = list3.merge(list1, list2);
         list3.printFirstToLast();
