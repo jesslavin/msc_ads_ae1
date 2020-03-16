@@ -118,7 +118,7 @@ public class AssessmentSLL<E extends Comparable<E>> {
 		return;
 	}
 
-	// 4. Helper function (mergeTwo):
+	// Helper function (mergeTwo):
 	public AssessmentSLL<E> mergeTwo(AssessmentSLL<E> listB) {
 		// a. Create new empty SLL, temp
 		AssessmentSLL<E> tempList = new AssessmentSLL<E>();
@@ -187,9 +187,9 @@ public class AssessmentSLL<E extends Comparable<E>> {
 		mergedList = this.mergeTwo(list1);
 		// 3. Set L3 to result of helper function mergeTwo (L2, L3)
 		mergedList = list2.mergeTwo(mergedList);
-		// 5. Remove any duplicates from L3 using helper function (removeDups):
+		// 4. Remove any duplicates from L3 using helper function (removeDups):
 		mergedList = mergedList.removeDups();
-		// 6. Return L3
+		// 5. Return L3
 		return mergedList;
 	}
 }
