@@ -1,6 +1,6 @@
 //add your name and matric number here
-// Jessica Lavin
-// 2495543L
+//Jessica Lavin
+//2495543L
 //do not include package statement 
 //do not import any classes
 //just complete the methods indicated,
@@ -65,24 +65,16 @@ public class AssessmentSLL<E extends Comparable<E>> {
 	 * add new node to end of list
 	 */
 	public void insertTail(E elem) {
-		// 1. create new node n, set next to null
 		Node<E> n = new Node<>(elem, null);
-		// 2. If the SLL is empty:
 		if (first == null) {
-			// 2.1. Set n as SLL head
 			first = n;
-			// 2.2. Return
 			return;
 		}
-		// 3. Else, if elements are present in the SLL:
 		Node<E> curr = first;
 		while (curr.next !=null) {
-			// 3.1. Traverse till last node in the SLL
 			curr = curr.next;
 		}
-		// 3.2. Change the next of the last node in the SLL to n
 		curr.next = n;
-		// 3.3. Return
 		return;
 	}
 
@@ -93,70 +85,45 @@ public class AssessmentSLL<E extends Comparable<E>> {
 	 *  the method would delete nodes containing badger and dog
 	 */
 	public void deleteAlternate() {
-		// 1. If the SLL is empty, return
 		if (first == null) {
 			return;
 		}
-		// 2. Else, initialise previous node and current node to the first and second nodes in the list
 		Node<E> prev = first;
 		Node<E> curr = first.next;
-		// 3. While neither the previous node or current node are empty, repeat:
 		while (prev != null && curr != null)
 		{
-			// 3.1. Change the next link of the previous node to the next link of the current node freeing the current node
 			prev.next = curr.next;
-			// 3.2. Empty the contents of current node
 			curr = null;
-			// 3.3. Traverse updating the previous and current nodes to the next set of nodes in the list
 			prev = prev.next;
 			if (prev != null) {
 				curr = prev.next;
 			}
 		}
-		// 4. Return
 		return;
 	}
 
-	/**
-	 * method to merge two ordered lists with this one whilst removing duplicates
-	 * order should be preserved
-	 * you need to replace the type list1, list2 and list3 and the return type
-	 * with the new name of this class
-	 */
-	public AssessmentSLL<E> merge(AssessmentSLL<E> list1, AssessmentSLL<E> list2) {
-		AssessmentSLL<E> mergedList = new AssessmentSLL<E>();
-		mergedList = this.merge2(list1);
-		mergedList = mergedList.merge2(list2);
-		return mergedList;
-	}
-
-	public AssessmentSLL<E> merge2(AssessmentSLL<E> toAdd) {
-		AssessmentSLL<E> doubleList = new AssessmentSLL<E>();
-		Node<E> node1 = this.first;
-		Node<E> node2 = toAdd.first;
-
-		while (node1 != null && node2 != null) {
-			if (node1.element.compareTo(node2.element) < 0) {
-				doubleList.insertTail(node1.element);
-				node1 = node1.next;
+	public AssessmentSLL<E> mergeTwo(AssessmentSLL<E> listB) {
+		AssessmentSLL<E> tempList = new AssessmentSLL<E>();
+		Node<E> listANode = this.first;
+		Node<E> listBNode = listB.first;
+		while (listANode != null && listBNode != null) {
+			if (listANode.element.compareTo(listBNode.element) < 0) {
+				tempList.insertTail(listANode.element);
+				listANode = listANode.next;
 			} else {
-				doubleList.insertTail(node2.element);
-				if (node1.element.compareTo(node2.element) == 0) {
-					node1 = node1.next;
-				}
-				node2 = node2.next;
+				tempList.insertTail(listBNode.element);
+				listBNode = listBNode.next;
 			}
 		}
-		while (node1 != null) {
-			doubleList.insertTail(node1.element);
-			node1 = node1.next;
+		while (listANode != null) {
+			tempList.insertTail(listANode.element);
+			listANode = listANode.next;
 		}
-		while (node2 != null) {
-			doubleList.insertTail(node2.element);
-			node2 = node2.next;
+		while (listBNode != null) {
+			tempList.insertTail(listBNode.element);
+			listBNode = listBNode.next;
 		}
-		doubleList = doubleList.removeDups();
-		return doubleList;
+		return tempList;
 	}
 
 	public AssessmentSLL<E> removeDups(){
@@ -170,6 +137,20 @@ public class AssessmentSLL<E extends Comparable<E>> {
 			curr = curr.next;
 		}
 		return this;
+	}
+
+	/**
+	 * method to merge two ordered lists with this one whilst removing duplicates
+	 * order should be preserved
+	 * you need to replace the type list1, list2 and list3 and the return type
+	 * with the new name of this class
+	 */
+	public AssessmentSLL<E> merge(AssessmentSLL<E> list1, AssessmentSLL<E> list2) {
+		AssessmentSLL<E> mergedList = new AssessmentSLL<E>();
+		mergedList = this.mergeTwo(list1);
+		mergedList = list2.mergeTwo(mergedList);
+		mergedList = mergedList.removeDups();
+		return mergedList;
 	}
 }
 
