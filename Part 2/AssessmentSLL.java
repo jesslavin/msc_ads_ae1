@@ -1,7 +1,6 @@
+//add your name and matric number here
 // Jessica Lavin
 // 2495543L
-
-//add your name and matric number here
 //do not include package statement 
 //do not import any classes
 //just complete the methods indicated,
@@ -130,7 +129,6 @@ public class AssessmentSLL<E extends Comparable<E>> {
 		mergedList = mergedList.merge2(list2);
 		return mergedList;
 	}
-
 
 	public AssessmentSLL<E> merge2(AssessmentSLL<E> toAdd) {
 		AssessmentSLL<E> doubleList = new AssessmentSLL<E>();

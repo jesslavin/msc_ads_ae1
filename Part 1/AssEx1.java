@@ -1,5 +1,9 @@
-// Jessica Lavin
-// 2495543L
+//add your name and matric number
+//Jessica Lavin
+//2495543L
+//do NOT include a package statement in your final submission
+
+//add any import statements you need here
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
