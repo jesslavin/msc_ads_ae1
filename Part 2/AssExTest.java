@@ -55,9 +55,9 @@ public class AssExTest {
 
         AssessmentSLL list1 = new AssessmentSLL();
 
+        list1.insertTail("5");
+        list1.insertTail("6");
         list1.insertTail("7");
-        list1.insertTail("8");
-        list1.insertTail("9");
 
         System.out.println(" ");
         System.out.println("Create first list of numbers:");
@@ -66,9 +66,9 @@ public class AssExTest {
 
         AssessmentSLL list2 = new AssessmentSLL();
 
-        list2.insertTail("6");
-        list2.insertTail("7");
-        list2.insertTail("8");
+        list2.insertTail("1");
+        list2.insertTail("2");
+        list2.insertTail("3");
 
         System.out.println(" ");
         System.out.println("Create second list of numbers:");
@@ -76,9 +76,9 @@ public class AssExTest {
         list2.printFirstToLast();
 
         AssessmentSLL list3 = new AssessmentSLL();
+        list3.insertTail("3");
         list3.insertTail("4");
         list3.insertTail("5");
-        list3.insertTail("6");
 
         System.out.println(" ");
         System.out.println("Create third list of numbers:");
